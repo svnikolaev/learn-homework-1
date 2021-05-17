@@ -14,12 +14,31 @@
 
 """
 
+def guess_status(age):
+    if age < 0:
+        status = "еще не родился"
+    elif 0 <= age < 3:
+        status = "готовится к детскому саду"
+    elif 3 <= age < 7:
+        status = "ходит в детский сад"
+    elif 7 <= age < 18:
+        status = "учится в школе"
+    elif 18 <= age < 23:
+        status = "учится в ВУЗе"
+    elif 23 <= age < 123:
+        status = "работает"
+    else:
+        status = "еще работает, или уже нет..."
+    return "Предполагаю, что человек " + status
+
 def main():
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    age = int(input("Введите возраст: "))
+    guess = guess_status(age)
+    print(guess)
 
 if __name__ == "__main__":
     main()
