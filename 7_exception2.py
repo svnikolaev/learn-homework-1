@@ -4,20 +4,28 @@
 
 Исключения: приведение типов
 
-* Перепишите функцию discounted(price, discount, max_discount=20)
+* [x] Перепишите функцию discounted(price, discount, max_discount=20)
   из урока про функции так, чтобы она перехватывала исключения,
   когда переданы некорректные аргументы.
-* Первые два нужно приводить к вещественному числу при помощи float(),
+* [x] Первые два нужно приводить к вещественному числу при помощи float(),
   а третий - к целому при помощи int() и перехватывать исключения
   ValueError и TypeError, если приведение типов не сработало.
     
 """
 
-def discounted(price, discount, max_discount=20)
-    """
-    Замените pass на ваш код
-    """
-    pass
+def discounted(price, discount, max_discount=20):
+    try:
+        price = float(price)
+        discount = float(discount)
+        max_discount = int(max_discount)
+        if discount > max_discount:
+            price_with_discount = price
+        else:
+            price_with_discount = price - (price * discount / 100)
+        return price_with_discount
+    # except(TypeError, ValueError):
+    except ValueError:
+        return "Неверные аргументы"
     
 if __name__ == "__main__":
     print(discounted(100, 2))
