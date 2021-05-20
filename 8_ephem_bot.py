@@ -3,18 +3,21 @@
 
 Использование библиотек: ephem
 
-* Установите модуль ephem
-* Добавьте в бота команду /planet, которая будет принимать на вход
+* [x] Установите модуль ephem
+  pip install ephem
+* [ ] Добавьте в бота команду /planet, которая будет принимать на вход
   название планеты на английском, например /planet Mars
-* В функции-обработчике команды из update.message.text получите
+* [ ] В функции-обработчике команды из update.message.text получите
   название планеты (подсказка: используйте .split())
-* При помощи условного оператора if и ephem.constellation научите
+* [ ] При помощи условного оператора if и ephem.constellation научите
   бота отвечать, в каком созвездии сегодня находится планета.
 
 """
 import logging
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+
+import local_settings
 
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
@@ -39,11 +42,12 @@ def greet_user(update, context):
 def talk_to_me(update, context):
     user_text = update.message.text
     print(user_text)
-    update.message.reply_text(text)
+    update.message.reply_text(user_text)
 
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
+    # mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
+    mybot = Updater(local_settings.TELEGRAM_BOT_TOKEN, use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
