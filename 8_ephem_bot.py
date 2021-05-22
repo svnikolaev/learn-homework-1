@@ -56,7 +56,8 @@ def where_is_planet(planet, dict_of_planets, date = None):
     if date == None:
         date = datetime.datetime.now()
     planet_name = dict_of_planets[planet]
-    Planet = eval(f'ephem.{planet_name}("{date}")')
+    # Planet = eval(f'ephem.{planet_name}("{date}")')
+    Planet = getattr(ephem, planet_name)(date)
     const = ephem.constellation(Planet)
     return const[1]
 
@@ -69,7 +70,6 @@ Available commands:
 
 def talk_to_me(update, context):
     user_text = update.message.text
-    print(user_text)
     update.message.reply_text(user_text)
 
 def planet(update, context):
@@ -81,9 +81,7 @@ def planet(update, context):
     planet = update.message.text.split()[1].lower()
     Planet = planet.capitalize()
     if planet in DICT_OF_PLANETS():
-        print(planet in DICT_OF_PLANETS())
         planet_location = where_is_planet(planet, DICT_OF_PLANETS())
-        print(planet_location)
         update.message.reply_text(f'Now {Planet} is in {planet_location}')
     else:
         update.message.reply_text(f'Don\'t know such planet - {Planet}')
