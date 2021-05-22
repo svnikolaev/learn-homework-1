@@ -52,6 +52,7 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
+    # не знаю как назвать промежуточные переменные, поэтому не стал их делать
     print("Средний балл по всей школе: " + str(school_average_score(SCHOOL_CLASSES))[:4])
     for school_class in SCHOOL_CLASSES:
         print("Класс: " + school_class['school_class'] + ", средний балл: " + str(class_average_score(school_class['scores']))[:4])

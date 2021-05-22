@@ -18,7 +18,7 @@
 def compare_strings(first_string, second_string):
     # лучше делать return result в конце функции, или return value после каждого if/elif ?
     result = None
-    # что лучше возвращать когда конфигурация переданных параметров не описана в спецификации?
+    # что лучше возвращать, когда конфигурация переданных параметров не описана в спецификации?
     are_strings = type(first_string) == type(second_string) == type(str())
     if not are_strings:
         return 0
