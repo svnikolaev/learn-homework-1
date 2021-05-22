@@ -73,7 +73,8 @@ def talk_to_me(update, context):
     update.message.reply_text(user_text)
 
 def planet(update, context):
-    if len(update.message.text.split()) < 2:
+    planet_not_specified = len(update.message.text.split()) < 2
+    if planet_not_specified:
         update.message.reply_text(f'Choose one of the planets: {", ".join(LIST_OF_PLANETS())}')
         return False
 
